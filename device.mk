@@ -1,7 +1,5 @@
 LOCAL_PATH := device/lenovo/k900
 
-DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlays
-
 #During Development we will turn off all security etc.
 ADDITIONAL_DEFAULT_PROPERTIES := \
     ro.adb.secure=0 \
@@ -40,19 +38,25 @@ PRODUCT_PACKAGES += \
    libhoudini_hook \
    houdini_hook
 
-# Recovery enire folder copy (test only for now)
+# Recovery proprietary files
 PRODUCT_COPY_FILES += \
-	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/etc,recovery/root/etc) \
-	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/sbin,recovery/root/sbin) \
-	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk,recovery/root)
+	$(LOCAL_PATH)/ramdisk/charger:recovery/root/charger \
+	$(LOCAL_PATH)/ramdisk/file_contexts:recovery/root/file_contexts \
+	$(LOCAL_PATH)/ramdisk/fstab.charger.redhookbay:recovery/root/fstab.charger.redhookbay \
+	$(LOCAL_PATH)/ramdisk/fstab.redhookbay:recovery/root/fstab.redhookbay \
+	$(LOCAL_PATH)/ramdisk/props.default.rc:recovery/root/props.default.rc \
+	$(LOCAL_PATH)/ramdisk/props.platform.rc:recovery/root/props.platform.rc \
+	$(LOCAL_PATH)/ramdisk/props.rc:recovery/root/props.rc \
+	$(LOCAL_PATH)/ramdisk/recovery.init.redhookbay.rc:recovery/root/recovery.init.redhookbay.rc \
+	$(LOCAL_PATH)/ramdisk/ueventd.goldfish.rc:recovery/root/ueventd.goldfish.rc \
+	$(LOCAL_PATH)/ramdisk/ueventd.rc:recovery/root/ueventd.rc \
+	$(LOCAL_PATH)/ramdisk/ueventd.redhookbay.rc:recovery/root/ueventd.redhookbay.rc
 
-# Recovery
+# Recovery enire folder copy (test only for now)
 #PRODUCT_COPY_FILES += \
-#	$(LOCAL_PATH)/recovery/recovery.fstab:recovery/root/etc/recovery.fstab
-#	$(LOCAL_PATH)/recovery/charger:recovery/root/charger
-#	$(LOCAL_PATH)/recovery/file_contexts:recovery/root/file_contexts
-#	$(LOCAL_PATH)/recovery/fstab.charger.redhookbay:recovery/root/fstab.charger.redhookbay
-#	$(LOCAL_PATH)/recovery/fstab.redhookbay:recovery/root/fstab.redhookbay
+#	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/etc,recovery/root/etc) \
+#	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/sbin,recovery/root/sbin) \
+#	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk,recovery/root)
 
 # Inherit dalvik configuration and the rest of the platform
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)

@@ -5,7 +5,7 @@ $(call inherit-product, vendor/cm/config/gsm.mk)
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
  
 ## Inherit device configuration
-$(call inherit-product, device/lenovo/redhookbay/full_redhookbay.mk)
+$(call inherit-product, device/lenovo/k900/cm_k900.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_RELEASE_NAME := k900
