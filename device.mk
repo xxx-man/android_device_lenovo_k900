@@ -40,13 +40,19 @@ PRODUCT_PACKAGES += \
    libhoudini_hook \
    houdini_hook
 
-# Recovery
+# Recovery enire folder copy (test only for now)
 PRODUCT_COPY_FILES += \
-	$(LOCAL_PATH)/recovery/recovery.fstab:recovery/root/etc/recovery.fstab
-	$(LOCAL_PATH)/recovery/charger:recovery/root/charger
-	$(LOCAL_PATH)/recovery/file_contexts:recovery/root/file_contexts
-	$(LOCAL_PATH)/recovery/fstab.charger.redhookbay:recovery/root/fstab.charger.redhookbay
-	$(LOCAL_PATH)/recovery/fstab.redhookbay:recovery/root/fstab.redhookbay
+	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/etc,recovery/root/etc) \
+	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk/sbin,recovery/root/sbin) \
+	$(call find-copy-subdir-files,*,$(LOCAL_PATH)/ramdisk,recovery/root)
+
+# Recovery
+#PRODUCT_COPY_FILES += \
+#	$(LOCAL_PATH)/recovery/recovery.fstab:recovery/root/etc/recovery.fstab
+#	$(LOCAL_PATH)/recovery/charger:recovery/root/charger
+#	$(LOCAL_PATH)/recovery/file_contexts:recovery/root/file_contexts
+#	$(LOCAL_PATH)/recovery/fstab.charger.redhookbay:recovery/root/fstab.charger.redhookbay
+#	$(LOCAL_PATH)/recovery/fstab.redhookbay:recovery/root/fstab.redhookbay
 
 # Inherit dalvik configuration and the rest of the platform
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-2048-dalvik-heap.mk)
