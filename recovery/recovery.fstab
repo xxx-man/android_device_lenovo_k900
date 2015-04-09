@@ -8,4 +8,4 @@
 /logs    	ext4  	/dev/block/mmcblk0p7 	length=0     	flags=display="logs";canbewiped
 /system  	ext4  	/dev/block/mmcblk0p8 	length=0
 /data    	ext4  	/dev/block/mmcblk0p9 	length=-16384
-/sdcard  	vfat  	/dev/block/mmcblk0p10	length=-16384
+/sdcard  	vfat  	/dev/block/mmcblk0p10	length=-16384	flags=display="SDcard";storage
